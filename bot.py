@@ -7,6 +7,7 @@ API_HASH = environ.get("API_HASH")
 BOT_TOKEN = environ.get("BOT_TOKEN")
 SESSION = environ.get("SESSION")
 TIME = int(environ.get("TIME"))
+
 GROUPS = []
 for grp in environ.get("GROUPS").split():
     GROUPS.append(int(grp))
@@ -17,20 +18,22 @@ for usr in environ.get("ADMINS").split():
 START_MSG = "<b>Hai {},\nI'm a simple bot to delete group messages after a specific time</b>"
 
 
-User = Client(name="user-account",
-              session_string=SESSION,
-              api_id=API_ID,
-              api_hash=API_HASH,
-              workers=300
-              )
+User = Client(
+    "user-account",
+    session_string=SESSION,
+    api_id=API_ID,
+    api_hash=API_HASH,
+    workers=300
+)
 
 
-Bot = Client(name="auto-delete",
-             api_id=API_ID,
-             api_hash=API_HASH,
-             bot_token=BOT_TOKEN,
-             workers=300
-             )
+Bot = Client(
+    "auto-delete",
+    api_id=API_ID,
+    api_hash=API_HASH,
+    bot_token=BOT_TOKEN,
+    workers=300
+)
 
 
 @Bot.on_message(filters.command('start') & filters.private)
@@ -49,13 +52,13 @@ async def delete(user, message):
        print(e)
        
 User.start()
-print("User Started!")
+print("HyDrix User Started!")
 Bot.start()
-print("Bot Started!")
+print("At Dl Bot Started!")
 
 idle()
 
 User.stop()
-print("User Stopped!")
+print("Hydrix User Stopped!")
 Bot.stop()
-print("Bot Stopped!")
+print("At Dl Bot Stopped!")
