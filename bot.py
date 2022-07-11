@@ -18,22 +18,19 @@ for usr in environ.get("ADMINS").split():
 START_MSG = "<b>Hai {},\nI'm a simple bot to delete group messages after a specific time</b>"
 
 
-User = Client(
-    "user-account",
-    session_string=SESSION,
-    api_id=API_ID,
-    api_hash=API_HASH,
-    workers=300
-)
+User = Client(session_name=SESSION,
+              api_id=API_ID,
+              api_hash=API_HASH,
+              workers=300
+              )
 
 
-Bot = Client(
-    "auto-delete",
-    api_id=API_ID,
-    api_hash=API_HASH,
-    bot_token=BOT_TOKEN,
-    workers=300
-)
+Bot = Client(session_name="auto-delete",
+             api_id=API_ID,
+             api_hash=API_HASH,
+             bot_token=BOT_TOKEN,
+             workers=300
+             )
 
 
 @Bot.on_message(filters.command('start') & filters.private)
