@@ -7,7 +7,6 @@ API_HASH = environ.get("API_HASH")
 BOT_TOKEN = environ.get("BOT_TOKEN")
 SESSION = environ.get("SESSION")
 TIME = int(environ.get("TIME"))
-
 GROUPS = []
 for grp in environ.get("GROUPS").split():
     GROUPS.append(int(grp))
@@ -44,18 +43,18 @@ async def delete(user, message):
           return
        else:
           await asyncio.sleep(TIME)
-          await Bot.delete_messages(message.chat.id, message.id)
+          await Bot.delete_messages(message.chat.id, message.message_id)
     except Exception as e:
        print(e)
        
 User.start()
-print("HyDrix User Started!")
+print("User Started!")
 Bot.start()
-print("At Dl Bot Started!")
+print("Bot Started!")
 
 idle()
 
 User.stop()
-print("Hydrix User Stopped!")
+print("User Stopped!")
 Bot.stop()
-print("At Dl Bot Stopped!")
+print("Bot Stopped!")
